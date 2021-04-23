@@ -1,43 +1,47 @@
 <template>
   <div class="hello">
     <h1>{{ msg }}</h1>
-    <p>
-      For a guide and recipes on how to configure / customize this project,<br>
-      check out the
-      <a href="https://cli.vuejs.org" target="_blank" rel="noopener">vue-cli documentation</a>.
-    </p>
-    <h3>Installed CLI Plugins</h3>
-    <ul>
-      <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-babel" target="_blank" rel="noopener">babel</a></li>
-      <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-router" target="_blank" rel="noopener">router</a></li>
-      <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-eslint" target="_blank" rel="noopener">eslint</a></li>
-    </ul>
-    <h3>Essential Links</h3>
-    <ul>
-      <li><a href="https://vuejs.org" target="_blank" rel="noopener">Core Docs</a></li>
-      <li><a href="https://forum.vuejs.org" target="_blank" rel="noopener">Forum</a></li>
-      <li><a href="https://chat.vuejs.org" target="_blank" rel="noopener">Community Chat</a></li>
-      <li><a href="https://twitter.com/vuejs" target="_blank" rel="noopener">Twitter</a></li>
-      <li><a href="https://news.vuejs.org" target="_blank" rel="noopener">News</a></li>
-    </ul>
-    <h3>Ecosystem</h3>
-    <ul>
-      <li><a href="https://router.vuejs.org" target="_blank" rel="noopener">vue-router</a></li>
-      <li><a href="https://vuex.vuejs.org" target="_blank" rel="noopener">vuex</a></li>
-      <li><a href="https://github.com/vuejs/vue-devtools#vue-devtools" target="_blank" rel="noopener">vue-devtools</a></li>
-      <li><a href="https://vue-loader.vuejs.org" target="_blank" rel="noopener">vue-loader</a></li>
-      <li><a href="https://github.com/vuejs/awesome-vue" target="_blank" rel="noopener">awesome-vue</a></li>
-    </ul>
+    <h3>Using the bootstrap library in vue.js</h3>
+
+    <!-- styling a button with bootstrap -->
+    <button class="btn btn-primary">Click Me</button>
+
+    <!-- styling a badge with bootstrap -->
+    <h1>Example heading <span class="badge bg-secondary">New</span></h1>
+    <button type="button" class="btn btn-primary">
+      Notifications <span class="badge bg-secondary">4</span></button
+    ><br />
+
+    <!-- styling an alert with bootstrap-vue -->
+    <b-alert show>Default Alert</b-alert> <br />
+    <b-alert variant="success" show>Success Alert</b-alert> <br />
+
+    <!-- adding a slide with vueperslides -->
+    <vueper-slides>
+      <vueper-slide v-for="i in 5" :key="i" :title="i.toString()" />
+    </vueper-slides>
   </div>
 </template>
 
 <script>
+import { VueperSlides, VueperSlide } from "vueperslides";
+import "vueperslides/dist/vueperslides.css";
+
 export default {
-  name: 'HelloWorld',
+  components: { VueperSlides, VueperSlide },
+  name: "HelloWorld",
   props: {
-    msg: String
-  }
-}
+    msg: String,
+  },
+  data: () => ({
+    slides: [
+      {
+        title: "Slide #1",
+        content: "Slide content.",
+      },
+    ],
+  }),
+};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
@@ -55,5 +59,9 @@ li {
 }
 a {
   color: #42b983;
+}
+
+.vueperslide {
+  background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
 }
 </style>
